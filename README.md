@@ -10,9 +10,31 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+#### 1. Clone  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+```sh
+$ https://github.com/ferreirajose/simulator.git
+```
+
+#### 2. install dependencies
+
+```sh
+$ npm install 
+```
+
+#### 3. Run Project
+
+```ts
+npm start
+```
+
+
+#### 3. Navigate to Project
+
+```ts
+Navigate to http://localhost:4200/.
+```
 
 ## Running unit tests
 
