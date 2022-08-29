@@ -61,7 +61,7 @@
 
   <div class="row mt-5">
     <div class="col">
-      <button type="submit" (click)="save$.next(formSimulator.value)" class="btn btn-primary">Simular
+      <button type="submit"  [disabled]="!formSimulator.valid" (click)="save$.next(formSimulator.value)" class="btn btn-primary">Simular
         empréstimo</button>
     </div>
   </div>

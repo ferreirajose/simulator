@@ -5,10 +5,26 @@
   </button>
 </div>
 <div class="modal-body">
-  <ul *ngIf="list.length">
-    <li *ngFor="let item of list">{{item}}</li>
-  </ul>
+  <div class="card-body">
+
+    <div class="wrapper">
+
+      <div class="flex-card">
+        <span class="span">Valor das Parcelas</span>
+        <span id="ci-total" class="bold dark">{{ response.valueInstallments | currency: 'BRL'}}</span>
+      </div>
+      <div class="flex-card">
+        <span class="span">Número de Parcelas</span>
+        <span id="ci-total" class="bold blue">{{ response.numberInstallments }}</span>
+      </div>
+      <div class="flex-card">
+        <span class="span">Total de Juros</span>
+        <span id="ci-total" class="bold green">{{ response.totalWithInterest  | currency: 'BRL'}}</span>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+  <button type="button" class="btn btn-primary" (click)="confirme()">Confirma</button>
+  <button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>
 </div>

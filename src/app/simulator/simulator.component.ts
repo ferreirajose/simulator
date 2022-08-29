@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { combineLatest, shareReplay, Subject, switchMap, tap, map, Observable } from 'rxjs';
 import { SimulatorService } from './simulator.service';
 import { Lending } from './lending';
 import { ModalComponent } from '../components/modal/modal.component';
 
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { SimulatorRes } from './response';
 @Component({
   selector: 'app-simulator',
   templateUrl: './simulator.component.html',
@@ -14,22 +15,24 @@ import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 export class SimulatorComponent implements OnInit {
 
   readonly save$ = new Subject();
-  formSimulator!: FormGroup;
+  formSimulator!: UntypedFormGroup;
   bsModalRef?: BsModalRef;
+  private response!: SimulatorRes;
 
   response$: Observable<any> = combineLatest(
    this.save$
   ).pipe(
     map((form) =>form
     ),
-    tap(val => console.log(val)),
     switchMap(([formSimulator]) => this.simulatorService.calcValue(formSimulator)),
-    tap(val => console.log(val)),
+    tap(val => {
+      this.response = val
+    }),
     shareReplay(1)
   )
 
   constructor(
-    readonly fb: FormBuilder,
+    readonly fb: UntypedFormBuilder,
     private simulatorService: SimulatorService,
     private modalService: BsModalService
   ) { }
@@ -41,24 +44,24 @@ export class SimulatorComponent implements OnInit {
   private initForm():void {
     this.formSimulator = this.fb.group({
       name: ['', Validators.required],
-      value: [0, Validators.required],
-      installments: [0, Validators.required]
+      value: ['', Validators.required],
+      installments: ['', Validators.required]
     })
   }
 
-  open() {
+  open(): void {
     const initialState: ModalOptions = {
       initialState: {
-        list: [
-          'Open a modal with component',
-          'Pass your data',
-          'Do something else',
-          '...'
-        ],
-        title: 'Modal with component'
-      }
+        response: this.response,
+        title: 'Confirma Emprestimo'
+      },
+
     };
-    this.bsModalRef = this.modalService.show(ModalComponent, initialState);
+
+    this.bsModalRef = this.modalService.show(
+      ModalComponent,
+      Object.assign(initialState, { class: 'gray modal-lg' })
+    );
 
   }
 

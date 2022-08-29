@@ -14,12 +14,17 @@ const routes: Routes = [
     loadChildren: () =>
       import('./simulator/simulator.module').then((m) => m.SimulatorModule),
   },
-  { path: '**', pathMatch: 'full',
-  component: PageNotFoundComponent },
+  { path: 'page-confirme',
+    loadChildren: () =>
+      import('./page-confirme/page-confirme.module').then(m => m.PageConfirmeModule) },
+  {
+    path: '**', pathMatch: 'full',
+    component: PageNotFoundComponent
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

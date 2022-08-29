@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgModule, DEFAULT_CURRENCY_CODE, LOCALE_ID} from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import {registerLocaleData} from '@angular/common';
+import { ModalComponent } from './../components/modal/modal.component';
 
 registerLocaleData(localePt, 'pt');
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,10 +17,11 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
-    SimulatorComponent
+    SimulatorComponent,
+    ModalComponent
   ],
   imports: [
-    CommonModule,
+  CommonModule,
     CurrencyMaskModule,
     ReactiveFormsModule,
     HttpClientModule,

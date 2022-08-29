@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, map, Observable, of, tap } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 import { Lending } from './lending';
 
@@ -13,13 +13,10 @@ export class SimulatorService {
   public calcValue(params: Lending | any): Observable<any> {
     const pagar = this.combine(this.calcJuros, this.sumJuros)
     return of(pagar(params.value, params.installments)).pipe(
-      tap(val=> {
-        console.log(val);
-      }),
       map(val => ({
         valueInstallments: this.round(params),
-        numberInstallments: params.installments ?? 0, // Número de parcelas
-        totalWithInterest: val //  Total do valor com juros
+        numberInstallments: params.installments ?? 0,
+        totalWithInterest: val
       }))
     )
   }

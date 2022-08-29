@@ -1,0 +1,35 @@
+
+  <div class="alert alert-primary" role="alert">
+    O empréstimo foi realizado com sucesso! Veja abaixo o que você contratou
+  </div>
+  <div class="card mt-5">
+    <div class="card-header">
+      Resultado
+    </div>
+    <div class="card-body">
+      <table id="tableResults" class="table info-table text-left">
+        <thead>
+          <tr>
+            <th>Dados da simulação</th>
+            <th style="width: 30%"></th>
+          </tr>
+        </thead>
+
+          <tbody>
+            <tr>
+              <td class="text-left">Valor das Parcela</td>
+              <td><span id="valParcela">{{ response.valueInstallments | currency: 'BRL'}}</span></td>
+            </tr>
+            <tr>
+              <td class="text-left">Número de Parcelas</td>
+              <td><span id="valTotal">{{ response.numberInstallments}}</span></td>
+            </tr>
+            <tr>
+              <td class="text-left">Total de Juros</td>
+              <td><span id="valJuros">{{ response.totalWithInterest  | currency: 'BRL'}}</span></td>
+            </tr>
+          </tbody>
+
+      </table>
+    </div>
+  </div>

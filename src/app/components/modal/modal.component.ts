@@ -1,20 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+
+import { SimulatorRes } from './../../simulator/response';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent {
   title?: string;
-  closeBtnName?: string;
-  list: any[] = [];
+  response!: SimulatorRes;
 
-  constructor(public bsModalRef: BsModalRef) {}
+  constructor(public bsModalRef: BsModalRef, private router: Router) {
 
-  ngOnInit() {
-    this.list.push('PROFIT!!!');
+  }
+
+  confirme() {
+    this.bsModalRef.hide();
+    setTimeout(() => {
+      this.router.navigate(['page-confirme'], {state: this.response})
+    })
+  }
+
+  cancel() {
+    this.bsModalRef.hide();
   }
 
 }
