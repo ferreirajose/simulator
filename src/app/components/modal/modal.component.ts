@@ -14,7 +14,11 @@ export class ModalComponent {
   response!: SimulatorRes;
 
   constructor(public bsModalRef: BsModalRef, private router: Router) {
-
+    this.response = {
+      valueInstallments: 0,
+      numberInstallments: 0,
+      totalWithInterest: 0
+    }
   }
 
   confirme() {

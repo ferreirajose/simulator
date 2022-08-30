@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { combineLatest, shareReplay, Subject, switchMap, tap, map, Observable } from 'rxjs';
-import { SimulatorService } from './simulator.service';
-import { Lending } from './lending';
-import { ModalComponent } from '../components/modal/modal.component';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { combineLatest, map, Observable, shareReplay, Subject, switchMap, tap } from 'rxjs';
 
-import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
+import { ModalComponent } from '../components/modal/modal.component';
 import { SimulatorRes } from './response';
+import { SimulatorService } from './simulator.service';
+
 @Component({
   selector: 'app-simulator',
   templateUrl: './simulator.component.html',
